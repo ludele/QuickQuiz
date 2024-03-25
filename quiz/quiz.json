@@ -1,0 +1,34 @@
+{
+  "questions": [
+    {
+      "type": "checklist",
+      "question": "Apple",
+      "options": [
+        "Red",
+        "Blue",
+        "Green"
+      ],
+      "correctAnswer": [
+        "Red",
+        "Green"
+      ]
+    },
+    {
+      "type": "text",
+      "question": "Something",
+      "options": [],
+      "correctAnswer": "something"
+    },
+    {
+      "type": "checklist",
+      "question": "abc",
+      "options": [
+        "def",
+        "efg"
+      ],
+      "correctAnswer": [
+        "def"
+      ]
+    }
+  ]
+}
