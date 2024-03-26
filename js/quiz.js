@@ -1,11 +1,14 @@
+var quizData;
+var resultDiv = document.getElementById('quizResult');
+
 document.getElementById('loadQuizBtn').addEventListener('click', function() {
     const fileInput = document.getElementById('quizFileInput');
     if (fileInput.files.length > 0) {
         const reader = new FileReader();
         
         reader.onload = function(e) {
-            const quizData = JSON.parse(e.target.result);
-            console.log(quizData)
+            quizData = JSON.parse(e.target.result);
+            // console.log(quizData)
             loadQuiz(quizData);
         };
         
@@ -16,7 +19,14 @@ document.getElementById('loadQuizBtn').addEventListener('click', function() {
 });
 
 function loadQuiz(quizData) {
+    resultDiv.classList.remove("box");
+    resultDiv.innerHTML = "";
+
     const quizContent = document.getElementById('quizContent');
+
+    while (quizContent.firstChild) {
+        quizContent.removeChild(quizContent.firstChild);
+    }
 
     quizData.questions.forEach((q, index) => {
         const questionElem = document.createElement('div');
@@ -49,23 +59,38 @@ function loadQuiz(quizData) {
 
 function submitQuiz() {
     let score = 0;
+
     quizData.questions.forEach((question, index) => {
         if (question.type === 'text') {
-            const input = document.querySelector(`input[name="answer${index}"]`);
-            if (input.value.trim().toLowerCase() === question.correctAnswer.toLowerCase()) {
+            const input = document.querySelector(`textarea[name="answer${index}"]`);
+            const correctAnswer = question.correctAnswer?.trim().toLowerCase();
+            const trimmedInput = input.value.trim().toLowerCase()
+
+            //console.log(correctAnswer, trimmedInput);
+
+            if (correctAnswer && trimmedInput === correctAnswer) {
                 score++;
             }
+
         } else if (question.type === 'checklist') {
             const selectedOptions = Array.from(document.querySelectorAll(`input[name="answer${index}"]:checked`)).map(input => input.value);
-            if (arraysEqual(selectedOptions.sort(), question.correctAnswer.sort())) {
+            const correctAnswer = question.correctAnswer.slice().sort();
+            const selectedOptionsSorted = selectedOptions.slice().sort();
+
+            if (arraysEqual(selectedOptionsSorted, correctAnswer)) {
                 score++;
             }
         }
     });
 
-    const result = document.getElementById('quizResult');
-    result.textContent = `You scored ${score} out of ${quizData.questions.length}`;
+    if (resultDiv) {
+        resultDiv.classList.add("box")
+        resultDiv.textContent = `You scored ${score} out of ${quizData.questions.length}`;
+    } else {
+        console.error("Element with ID 'quizResult' not found.");
+    }
 }
+
 
 function arraysEqual(a, b) {
     return a.length === b.length && a.every((val, index) => val === b[index]);

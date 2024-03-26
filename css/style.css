@@ -23,7 +23,7 @@ body {
    padding: 1rem 2rem 2rem 2rem;
    margin: auto;
    font-family: 'Quicksand', 'Roboto', sans-serif;
-   color: rgb(0, 0, 0);
+   color: var(--text-color);
    text-align: left;
 }
 
@@ -33,20 +33,20 @@ body {
    padding-left: 0;
    justify-content: space-around;
    box-sizing: border-box;
-   background-color: #f6cfcf;
+   background-color: var(--box-background);
    padding: 0.4rem;
    border-radius: 15px;
    flex-grow: 1;
 }
 
 .header-box a {
-   border: 0.23em solid #ffbfbf;
+   border: 0.23em solid var(--background-color);
    border-radius: 1.5rem;
    margin: 0.25rem;
    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.1);
    justify-content: center;
    display: flex;
-   background-color: #ffeded;
+   background-color: var(--box-background);
    padding: 0.4rem 0.1rem 0.4rem 0.1rem;
    flex: 1 1;
    flex-wrap: wrap;
@@ -84,7 +84,8 @@ button,
    justify-content: center;
    text-align: center;
    padding: 0.5rem;
-   background-color: #f6cfcf;
+   color: var(--text-color);
+   background-color: var(--box-background);
    box-shadow: 0 0.5rem 1rem 0.5rem rgba(0, 0, 0, 0.1);
    border-radius: 2rem;
    margin: 0.55rem;
@@ -127,7 +128,7 @@ form {
 .menu-item {
    display: block;
    background-color: #f4bdd6;
-   color: #000000;
+   color: var(--text-color);
    padding: 10px 20px;
    margin: 5px 0;
    border: none;
@@ -149,7 +150,7 @@ textarea, input {
    border: 0.3rem solid #000000;
    box-sizing: border-box;
    background-color: #ffffff7b;
-   color: #000000;
+   color: var(--text-color);
 }
 
 textarea {
