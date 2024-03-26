@@ -1,17 +1,17 @@
 var quizData;
 var resultDiv = document.getElementById('quizResult');
 
-document.getElementById('loadQuizBtn').addEventListener('click', function() {
+document.getElementById('loadQuizBtn').addEventListener('click', function () {
     const fileInput = document.getElementById('quizFileInput');
     if (fileInput.files.length > 0) {
         const reader = new FileReader();
-        
-        reader.onload = function(e) {
+
+        reader.onload = function (e) {
             quizData = JSON.parse(e.target.result);
             // console.log(quizData)
             loadQuiz(quizData);
         };
-        
+
         reader.readAsText(fileInput.files[0]);
     } else {
         alert("Error, not functional quiz-file");
@@ -44,12 +44,15 @@ function loadQuiz(quizData) {
             q.options.forEach(option => {
                 const label = document.createElement('label');
                 const checkbox = document.createElement('input');
+                //const lineBreak = document.createElement('br');
+                label.classList.add("box")
                 checkbox.type = 'checkbox';
                 checkbox.name = `answer${index}`;
                 checkbox.value = option;
                 label.appendChild(checkbox);
                 label.append(option);
                 questionElem.appendChild(label);
+                //questionElem.appendChild(lineBreak);
             });
         }
 
@@ -84,8 +87,27 @@ function submitQuiz() {
     });
 
     if (resultDiv) {
-        resultDiv.classList.add("box")
-        resultDiv.textContent = `You scored ${score} out of ${quizData.questions.length}`;
+        resultDiv.classList.add("box", "center")
+        let percentage = (score / quizData.questions.length) * 100;
+
+        const gradingScale = [
+            { threshold: 100, grade: 'S' },  
+            { threshold: 95, grade: 'A+' },
+            { threshold: 90, grade: 'A' },
+            { threshold: 80, grade: 'B' },
+            { threshold: 70, grade: 'C' },
+            { threshold: 60, grade: 'D' },
+            { threshold: 55, grade: 'E' },
+            { threshold: 0, grade: 'F' }    
+        ];
+        for (let i = 0; i < gradingScale.length; i++) {
+            if (percentage >= gradingScale[i].threshold) {
+                grade = gradingScale[i].grade;
+                break; 
+            }
+        }
+        
+        resultDiv.textContent = `You scored ${score} out of ${quizData.questions.length} which is ${percentage.toFixed()}% and this gives you ${grade}`;
     } else {
         console.error("Element with ID 'quizResult' not found.");
     }

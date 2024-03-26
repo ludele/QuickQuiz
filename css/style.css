@@ -75,14 +75,19 @@ h1 {
    text-align: center;
 }
 
+.center {
+   justify-content: center; 
+   text-align: center;
+}
+
 .box,
 button,
 .remove-btn {
    margin: 0 auto;
    display: flexbox;
    flex-wrap: wrap;
-   justify-content: center;
-   text-align: center;
+   /* justify-content: center; */
+   /* text-align: center; */
    padding: 0.5rem;
    color: var(--text-color);
    background-color: var(--box-background);
@@ -96,6 +101,12 @@ form {
    flex-wrap: wrap;
 }
 
+label {
+   display: flex;
+   flex-direction: row;
+   flex-wrap: wrap;
+   text-align: left;
+}
 
 .form-containter {
    display: flex;
@@ -161,9 +172,14 @@ input[type=text] {
    width: 60%;
 }
 
-input[type=checkbox] {
-
+input[type=file] {
+   width: 15.5rem;
 }
+
+input[type="checkbox"] {
+   size: 1000%;
+}
+ 
 
 button:hover {
    background-color: #e6b800;
