@@ -115,7 +115,7 @@ function exportQuizToJSON() {
 
     const dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(quizData, null, 2));
     const dlAnchorElem = document.createElement('a');
-    dlAnchorElem.setAttribute("href",     dataStr     );
+    dlAnchorElem.setAttribute("href", dataStr);
     dlAnchorElem.setAttribute("download", "quiz.json");
     dlAnchorElem.click();
 }
