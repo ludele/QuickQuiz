@@ -25,7 +25,7 @@ Quick quiz is a front-end simple web-application that can dynamically create qui
 ### Installation (not needed)
 
 1. Clone the repo
-   - `git clone [https://github.com/ludele/QuickQuiz.git](https://github.com/ludele/QuickQuiz.git)`
+   - `git clone` [https://github.com/ludele/QuickQuiz.git](https://github.com/ludele/QuickQuiz.git)
 
 2. The program can simply be loaded by opening the index.html file, or any of the others for that matter.
 3. Also possible to use a web-server.
