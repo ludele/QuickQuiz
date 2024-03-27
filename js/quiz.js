@@ -91,7 +91,7 @@ function submitQuiz() {
         let percentage = (score / quizData.questions.length) * 100;
 
         const gradingScale = [
-            { threshold: 100, grade: 'S' },  
+            { threshold: 100, grade: 'A++' },  
             { threshold: 95, grade: 'A+' },
             { threshold: 90, grade: 'A' },
             { threshold: 80, grade: 'B' },
